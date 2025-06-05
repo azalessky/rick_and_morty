@@ -30,7 +30,8 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
   @override
   void initState() {
     super.initState();
-    ref.listenManual(charactersStateProvider, (_, state) => _resetScrollController(state));
+    // TODO: Remove this if no bugs
+    //  ref.listenManual(charactersStateProvider, (_, state) => _resetScrollController(state));
   }
 
   @override
@@ -60,7 +61,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
             );
           }
         },
-        error: (_, __) {
+        error: (_, _) {
           isRefreshing = false;
           return _buildErrorPlaceholder();
         },
@@ -77,7 +78,11 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
         itemCount: characters.items.length + (characters.hasMore ? 1 : 0),
         itemBuilder: (_, index) {
           if (index < characters.items.length) {
-            return CharacterListItem(character: characters.items[index]);
+            final character = characters.items[index];
+            return CharacterListItem(
+              key: ValueKey(character.id),
+              character: character,
+            );
           } else {
             return _buildLoadMoreIndicator();
           }

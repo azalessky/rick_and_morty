@@ -10,6 +10,7 @@ abstract class Character with _$Character {
     required String name,
     required String species,
     required String image,
+    required bool favorite,
   }) = _Character;
 
   factory Character.fromJson(Map<String, dynamic> json) => _$CharacterFromJson(json);
@@ -19,5 +20,6 @@ abstract class Character with _$Character {
     name: '',
     species: '',
     image: '',
+    favorite: false,
   );
 }

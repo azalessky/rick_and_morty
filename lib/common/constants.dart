@@ -14,12 +14,8 @@ class FormLayout {
   static const smallSpacer = SizedBox.square(dimension: 6);
   static const mediumSpacer = SizedBox.square(dimension: 8);
   static const largeSpacer = SizedBox.square(dimension: 12);
-
-  static const listItemPadding = EdgeInsets.symmetric(vertical: 8);
-}
-
-class FormStyles {
   static const imageRadius = 16.0;
+  static const listItemPadding = EdgeInsets.symmetric(vertical: 8);
 }
 
 class DialogPaddings {

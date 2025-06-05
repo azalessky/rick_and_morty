@@ -30,7 +30,10 @@ class ApiService {
 
         final prev = data['info']['prev'] ?? '';
         final next = data['info']['next'] ?? '';
-        final items = results.map<Character>((json) => Character.fromJson(json)).toList();
+        final items = results.map<Character>((json) {
+          json['favorite'] = false;
+          return Character.fromJson(json);
+        }).toList();
 
         return CharacterList(prev: prev, next: next, items: items);
       } else {
