@@ -5,8 +5,11 @@
     "HomeScreen.Favorites": "Избранное",
     "HomeScreen.Settings": "Настройки",
 
-    "Characters.Title": "Персонажи",
-    
+    "CharactersScreen.Title": "Персонажи",
+    "CharactersScreen.EmptyText": "Нет персонажей.\nПопробуйте изменить фильтры.",
+    "CharactersScreen.ErrorText": "Ошибка сервера.\nПопробуйте повторить позже.",
+    "CharactersScreen.ErrorItem": "Ошибка сервера.",
+
     "FavoritesScreen.Title": "Избранное",
     
     "SettingsScreen.Title": "Настройки",

@@ -4,6 +4,14 @@ class DefaultSettings {
   static const themeMode = ThemeMode.dark;
 }
 
+class FormLayout {
+  // static const contentPadding = EdgeInsets.all(24);
+  // static const tinySpacer = SizedBox.square(dimension: 2);
+  // static const smallSpacer = SizedBox.square(dimension: 4);
+  // static const defaultSpacer = SizedBox.square(dimension: 8);
+  static const textSpacer = SizedBox.square(dimension: 12);
+}
+
 class DialogPaddings {
   static const screeniOS = EdgeInsets.only(top: 8, bottom: 32);
   static const screenAndroid = EdgeInsets.only(top: 8, bottom: 24);

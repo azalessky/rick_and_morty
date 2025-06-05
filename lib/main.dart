@@ -7,6 +7,7 @@ import 'package:rick_and_morty/providers/providers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Depedencies.initialize();
   await Localization.initialize();
 
   runApp(
@@ -39,7 +40,7 @@ class MainApp extends StatelessWidget {
   }
 
   Widget _buildApp(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
+    final settings = ref.watch(settingsStateProvider);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

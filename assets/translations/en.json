@@ -5,8 +5,11 @@
     "HomeScreen.Favorites": "Favorites",
     "HomeScreen.Settings": "Settings",
 
-    "Characters.Title": "Characters",
-    
+    "CharactersScreen.Title": "Characters",
+    "CharactersScreen.EmptyText": "No characters.\nTry change the filters.",
+    "CharactersScreen.ErrorText": "Server error.\nTry again later.",
+    "CharactersScreen.ErrorItem": "Server error.",
+
     "FavoritesScreen.Title": "Favorites",
     
     "SettingsScreen.Title": "Settings",

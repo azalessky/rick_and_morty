@@ -13,7 +13,7 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(settingsProvider);
+    final config = ref.watch(settingsStateProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -28,17 +28,17 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildThemeMode(BuildContext context, WidgetRef ref, Config config) {
+  Widget _buildThemeMode(BuildContext context, WidgetRef ref, Settings settings) {
     return ListTile(
       leading: const Icon(Icons.dark_mode_outlined),
       title: Text('SettingsScreen.ThemeMode'.tr()),
-      subtitle: Text('${config.themeMode}'.tr()),
+      subtitle: Text('${settings.themeMode}'.tr()),
       onTap: () => showModalDialog<ThemeMode>(
         context: context,
         builder: (_) => ValueListDialog(
           title: 'SettingsScreen.ThemeMode'.tr(),
           values: ThemeMode.values,
-          initialValue: config.themeMode,
+          initialValue: settings.themeMode,
           textBuilder: (value) => '$value'.tr(),
         ),
         onSaved: (value) => _updateThemeMode(ref, value),
@@ -47,7 +47,7 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   void _updateThemeMode(WidgetRef ref, ThemeMode value) {
-    ref.read(settingsProvider.notifier).themeMode = value;
+    ref.read(settingsStateProvider.notifier).themeMode = value;
     // cachedRepository.saveData();
   }
 }

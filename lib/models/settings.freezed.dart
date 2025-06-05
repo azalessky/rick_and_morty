@@ -4,7 +4,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'config.dart';
+part of 'settings.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,22 +14,22 @@ part of 'config.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$Config {
+mixin _$Settings {
 
  ThemeMode get themeMode;
-/// Create a copy of Config
+/// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ConfigCopyWith<Config> get copyWith => _$ConfigCopyWithImpl<Config>(this as Config, _$identity);
+$SettingsCopyWith<Settings> get copyWith => _$SettingsCopyWithImpl<Settings>(this as Settings, _$identity);
 
-  /// Serializes this Config to a JSON map.
+  /// Serializes this Settings to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Config&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38,15 +38,15 @@ int get hashCode => Object.hash(runtimeType,themeMode);
 
 @override
 String toString() {
-  return 'Config(themeMode: $themeMode)';
+  return 'Settings(themeMode: $themeMode)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ConfigCopyWith<$Res>  {
-  factory $ConfigCopyWith(Config value, $Res Function(Config) _then) = _$ConfigCopyWithImpl;
+abstract mixin class $SettingsCopyWith<$Res>  {
+  factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) = _$SettingsCopyWithImpl;
 @useResult
 $Res call({
  ThemeMode themeMode
@@ -57,14 +57,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$ConfigCopyWithImpl<$Res>
-    implements $ConfigCopyWith<$Res> {
-  _$ConfigCopyWithImpl(this._self, this._then);
+class _$SettingsCopyWithImpl<$Res>
+    implements $SettingsCopyWith<$Res> {
+  _$SettingsCopyWithImpl(this._self, this._then);
 
-  final Config _self;
-  final $Res Function(Config) _then;
+  final Settings _self;
+  final $Res Function(Settings) _then;
 
-/// Create a copy of Config
+/// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? themeMode = null,}) {
   return _then(_self.copyWith(
@@ -79,26 +79,26 @@ as ThemeMode,
 /// @nodoc
 @JsonSerializable()
 
-class _Config implements Config {
-  const _Config({required this.themeMode});
-  factory _Config.fromJson(Map<String, dynamic> json) => _$ConfigFromJson(json);
+class _Settings implements Settings {
+  const _Settings({required this.themeMode});
+  factory _Settings.fromJson(Map<String, dynamic> json) => _$SettingsFromJson(json);
 
 @override final  ThemeMode themeMode;
 
-/// Create a copy of Config
+/// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ConfigCopyWith<_Config> get copyWith => __$ConfigCopyWithImpl<_Config>(this, _$identity);
+_$SettingsCopyWith<_Settings> get copyWith => __$SettingsCopyWithImpl<_Settings>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$ConfigToJson(this, );
+  return _$SettingsToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Config&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -107,15 +107,15 @@ int get hashCode => Object.hash(runtimeType,themeMode);
 
 @override
 String toString() {
-  return 'Config(themeMode: $themeMode)';
+  return 'Settings(themeMode: $themeMode)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
-  factory _$ConfigCopyWith(_Config value, $Res Function(_Config) _then) = __$ConfigCopyWithImpl;
+abstract mixin class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
+  factory _$SettingsCopyWith(_Settings value, $Res Function(_Settings) _then) = __$SettingsCopyWithImpl;
 @override @useResult
 $Res call({
  ThemeMode themeMode
@@ -126,17 +126,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$ConfigCopyWithImpl<$Res>
-    implements _$ConfigCopyWith<$Res> {
-  __$ConfigCopyWithImpl(this._self, this._then);
+class __$SettingsCopyWithImpl<$Res>
+    implements _$SettingsCopyWith<$Res> {
+  __$SettingsCopyWithImpl(this._self, this._then);
 
-  final _Config _self;
-  final $Res Function(_Config) _then;
+  final _Settings _self;
+  final $Res Function(_Settings) _then;
 
-/// Create a copy of Config
+/// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? themeMode = null,}) {
-  return _then(_Config(
+  return _then(_Settings(
 themeMode: null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
 as ThemeMode,
   ));

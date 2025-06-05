@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'config.dart';
+part of 'settings.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Config _$ConfigFromJson(Map<String, dynamic> json) =>
-    _Config(themeMode: $enumDecode(_$ThemeModeEnumMap, json['themeMode']));
+_Settings _$SettingsFromJson(Map<String, dynamic> json) =>
+    _Settings(themeMode: $enumDecode(_$ThemeModeEnumMap, json['themeMode']));
 
-Map<String, dynamic> _$ConfigToJson(_Config instance) => <String, dynamic>{
+Map<String, dynamic> _$SettingsToJson(_Settings instance) => <String, dynamic>{
   'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
 };
 
