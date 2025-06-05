@@ -3,5 +3,17 @@
 
     "HomeScreen.Characters": "Characters",
     "HomeScreen.Favorites": "Favorites",
-    "HomeScreen.Settings": "Settings"
+    "HomeScreen.Settings": "Settings",
+
+    "Characters.Title": "Characters",
+    
+    "FavoritesScreen.Title": "Favorites",
+    
+    "SettingsScreen.Title": "Settings",
+
+    "SettingsScreen.ThemeMode": "Theme mode",
+
+    "ThemeMode.light": "Light",
+    "ThemeMode.dark": "Dark",
+    "ThemeMode.system": "System"
 }

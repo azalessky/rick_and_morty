@@ -3,5 +3,16 @@
     
     "HomeScreen.Characters": "Персонажи",
     "HomeScreen.Favorites": "Избранное",
-    "HomeScreen.Settings": "Настройки"
+    "HomeScreen.Settings": "Настройки",
+
+    "Characters.Title": "Персонажи",
+    
+    "FavoritesScreen.Title": "Избранное",
+    
+    "SettingsScreen.Title": "Настройки",
+    "SettingsScreen.ThemeMode": "Режим темы",
+
+    "ThemeMode.light": "Светлая",
+    "ThemeMode.dark": "Темная",
+    "ThemeMode.system": "Системная"
 }

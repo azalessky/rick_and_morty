@@ -1,16 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import 'package:rick_and_morty/models/models.dart';
+import 'package:rick_and_morty/providers/providers.dart';
+import 'package:rick_and_morty/dialogs/dialogs.dart';
 
 @RoutePage()
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final config = ref.watch(settingsProvider);
+
     return Scaffold(
-      body: Center(
-        child: Text('Settings Screen'),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('SettingsScreen.Title'.tr()),
+      ),
+      body: Column(
+        children: [
+          _buildThemeMode(context, ref, config),
+        ],
       ),
     );
+  }
+
+  Widget _buildThemeMode(BuildContext context, WidgetRef ref, Config config) {
+    return ListTile(
+      leading: const Icon(Icons.dark_mode_outlined),
+      title: Text('SettingsScreen.ThemeMode'.tr()),
+      subtitle: Text('${config.themeMode}'.tr()),
+      onTap: () => showModalDialog<ThemeMode>(
+        context: context,
+        builder: (_) => ValueListDialog(
+          title: 'SettingsScreen.ThemeMode'.tr(),
+          values: ThemeMode.values,
+          initialValue: config.themeMode,
+          textBuilder: (value) => '$value'.tr(),
+        ),
+        onSaved: (value) => _updateThemeMode(ref, value),
+      ),
+    );
+  }
+
+  void _updateThemeMode(WidgetRef ref, ThemeMode value) {
+    ref.read(settingsProvider.notifier).themeMode = value;
+    // cachedRepository.saveData();
   }
 }
