@@ -40,7 +40,7 @@ class SpacePlaceholder extends StatelessWidget {
           lines[0],
           style: Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
         ),
-        FormLayout.textSpacer,
+        FormLayout.largeSpacer,
         Text(
           lines[1],
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
