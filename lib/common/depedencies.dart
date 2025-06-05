@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'package:rick_and_morty/repositories/repositories.dart';
+import 'package:rick_and_morty/services/api_service.dart';
 
 final getIt = GetIt.I;
 
@@ -14,7 +15,9 @@ class Depedencies {
     //   () => LocalRepository(prefs: getIt.get<SharedPreferences>()),
     //   dependsOn: [SharedPreferences],
     // );
-    getIt.registerSingleton<RemoteRepository>(RemoteRepository());
+    getIt.registerSingleton<RemoteRepository>(
+      RemoteRepository(api: ApiService()),
+    );
     // getIt.registerSingletonWithDependencies<CachedRepository>(
     //   () => CachedRepository(
     //     local: getIt.get<LocalRepository>(),

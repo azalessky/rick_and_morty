@@ -10,9 +10,9 @@ abstract class CharacterList with _$CharacterList {
   const CharacterList._();
 
   const factory CharacterList({
-    required List<Character> items,
     required String prev,
     required String next,
+    required List<Character> items,
   }) = _CharacterList;
 
   bool get isFirst => prev.isEmpty;

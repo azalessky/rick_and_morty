@@ -6,7 +6,7 @@ part 'character.g.dart';
 @freezed
 abstract class Character with _$Character {
   const factory Character({
-    required String id,
+    required int id,
     required String name,
     required String species,
     required String image,
@@ -15,7 +15,7 @@ abstract class Character with _$Character {
   factory Character.fromJson(Map<String, dynamic> json) => _$CharacterFromJson(json);
 
   factory Character.empty() => Character(
-    id: '',
+    id: 0,
     name: '',
     species: '',
     image: '',

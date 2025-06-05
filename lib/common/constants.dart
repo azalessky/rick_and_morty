@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
+class ApiSettings {
+  static const characterEndpoint = 'https://rickandmortyapi.com/api/character';
+  static const requestTimeout = Duration(seconds: 30);
+}
+
 class DefaultSettings {
   static const themeMode = ThemeMode.dark;
 }
 
 class FormLayout {
-  // static const contentPadding = EdgeInsets.all(24);
-  // static const tinySpacer = SizedBox.square(dimension: 2);
-  // static const smallSpacer = SizedBox.square(dimension: 4);
-  // static const defaultSpacer = SizedBox.square(dimension: 8);
   static const textSpacer = SizedBox.square(dimension: 12);
 }
 

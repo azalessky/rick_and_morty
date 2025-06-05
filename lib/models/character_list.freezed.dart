@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CharacterList {
 
- List<Character> get items; String get prev; String get next;
+ String get prev; String get next; List<Character> get items;
 /// Create a copy of CharacterList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $CharacterListCopyWith<CharacterList> get copyWith => _$CharacterListCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CharacterList&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.prev, prev) || other.prev == prev)&&(identical(other.next, next) || other.next == next));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CharacterList&&(identical(other.prev, prev) || other.prev == prev)&&(identical(other.next, next) || other.next == next)&&const DeepCollectionEquality().equals(other.items, items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),prev,next);
+int get hashCode => Object.hash(runtimeType,prev,next,const DeepCollectionEquality().hash(items));
 
 @override
 String toString() {
-  return 'CharacterList(items: $items, prev: $prev, next: $next)';
+  return 'CharacterList(prev: $prev, next: $next, items: $items)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $CharacterListCopyWith<$Res>  {
   factory $CharacterListCopyWith(CharacterList value, $Res Function(CharacterList) _then) = _$CharacterListCopyWithImpl;
 @useResult
 $Res call({
- List<Character> items, String prev, String next
+ String prev, String next, List<Character> items
 });
 
 
@@ -66,12 +66,12 @@ class _$CharacterListCopyWithImpl<$Res>
 
 /// Create a copy of CharacterList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? prev = null,Object? next = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? prev = null,Object? next = null,Object? items = null,}) {
   return _then(_self.copyWith(
-items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Character>,prev: null == prev ? _self.prev : prev // ignore: cast_nullable_to_non_nullable
+prev: null == prev ? _self.prev : prev // ignore: cast_nullable_to_non_nullable
 as String,next: null == next ? _self.next : next // ignore: cast_nullable_to_non_nullable
-as String,
+as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<Character>,
   ));
 }
 
@@ -82,9 +82,11 @@ as String,
 @JsonSerializable()
 
 class _CharacterList extends CharacterList {
-  const _CharacterList({required final  List<Character> items, required this.prev, required this.next}): _items = items,super._();
+  const _CharacterList({required this.prev, required this.next, required final  List<Character> items}): _items = items,super._();
   factory _CharacterList.fromJson(Map<String, dynamic> json) => _$CharacterListFromJson(json);
 
+@override final  String prev;
+@override final  String next;
  final  List<Character> _items;
 @override List<Character> get items {
   if (_items is EqualUnmodifiableListView) return _items;
@@ -92,8 +94,6 @@ class _CharacterList extends CharacterList {
   return EqualUnmodifiableListView(_items);
 }
 
-@override final  String prev;
-@override final  String next;
 
 /// Create a copy of CharacterList
 /// with the given fields replaced by the non-null parameter values.
@@ -108,16 +108,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CharacterList&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.prev, prev) || other.prev == prev)&&(identical(other.next, next) || other.next == next));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CharacterList&&(identical(other.prev, prev) || other.prev == prev)&&(identical(other.next, next) || other.next == next)&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),prev,next);
+int get hashCode => Object.hash(runtimeType,prev,next,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'CharacterList(items: $items, prev: $prev, next: $next)';
+  return 'CharacterList(prev: $prev, next: $next, items: $items)';
 }
 
 
@@ -128,7 +128,7 @@ abstract mixin class _$CharacterListCopyWith<$Res> implements $CharacterListCopy
   factory _$CharacterListCopyWith(_CharacterList value, $Res Function(_CharacterList) _then) = __$CharacterListCopyWithImpl;
 @override @useResult
 $Res call({
- List<Character> items, String prev, String next
+ String prev, String next, List<Character> items
 });
 
 
@@ -145,12 +145,12 @@ class __$CharacterListCopyWithImpl<$Res>
 
 /// Create a copy of CharacterList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? prev = null,Object? next = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? prev = null,Object? next = null,Object? items = null,}) {
   return _then(_CharacterList(
-items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Character>,prev: null == prev ? _self.prev : prev // ignore: cast_nullable_to_non_nullable
+prev: null == prev ? _self.prev : prev // ignore: cast_nullable_to_non_nullable
 as String,next: null == next ? _self.next : next // ignore: cast_nullable_to_non_nullable
-as String,
+as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<Character>,
   ));
 }
 
