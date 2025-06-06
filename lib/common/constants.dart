@@ -18,9 +18,9 @@ class FormLayout {
   static const smallSpacing = 6.0;
   static const mediumSpacing = 8.0;
   static const largeSpacing = 12.0;
-  static const extraLargeSpacing = 20.0;
+  static const extraLargeSpacing = 24.0;
   static const imageRadius = 12.0;
-  static const listItemPadding = EdgeInsets.symmetric(horizontal: 32, vertical: 12);
+  static const listItemPadding = EdgeInsets.symmetric(horizontal: 32, vertical: 8);
 }
 
 class DialogPaddings {

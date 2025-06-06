@@ -16,7 +16,7 @@
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
 
-    "ThemeMode.light": "Светлая",
-    "ThemeMode.dark": "Темная",
-    "ThemeMode.system": "Системная"
+    "ThemeMode.light": "Светлый",
+    "ThemeMode.dark": "Темный",
+    "ThemeMode.system": "Системный"
 }
