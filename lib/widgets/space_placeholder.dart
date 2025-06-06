@@ -36,18 +36,17 @@ class SpacePlaceholder extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        spacing: FormLayout.largeSpacing,
         children: [
           Text(
             lines[0],
             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
           ),
-          if (lines.length > 1) ...[
-            FormLayout.largeSpacer,
+          if (lines.length > 1)
             Text(
               lines[1],
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
             ),
-          ],
         ],
       ),
     );

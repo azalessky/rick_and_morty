@@ -19,33 +19,37 @@ class CharacterListItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: FormLayout.listItemPadding,
-      child: Column(
+      child: Row(
+        spacing: FormLayout.extraLargeSpacing,
         children: [
-          Stack(
-            children: [
-              CharacterImage(imageUrl: character.image),
-              _buildFavoriteIcon(ref),
-            ],
+          Expanded(
+            flex: 1,
+            child: CharacterImage(imageUrl: character.image),
           ),
-          FormLayout.mediumSpacer,
-          context.textLarge(character.name),
-          FormLayout.largeSpacer,
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: FormLayout.smallSpacing,
+              children: [
+                //     _buildFavoriteIcon(ref),
+                context.textLarge(character.name),
+                context.textMedium(character.species),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
   Widget _buildFavoriteIcon(WidgetRef ref) {
-    return Positioned(
-      top: 0,
-      right: 0,
-      child: IconButton(
-        icon: Icon(
-          character.favorite ? Icons.favorite : Icons.favorite_border,
-          color: character.favorite ? Colors.red : Colors.red,
-        ),
-        onPressed: () => ref.read(charactersStateProvider.notifier).toggleFavorite(character),
+    return IconButton(
+      icon: Icon(
+        character.favorite ? Icons.star : Icons.star_border,
+        color: character.favorite ? Colors.yellow : Colors.grey,
       ),
+      onPressed: () => ref.read(charactersStateProvider.notifier).toggleFavorite(character),
     );
   }
 }

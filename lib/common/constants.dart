@@ -15,12 +15,12 @@ class DefaultSettings {
 }
 
 class FormLayout {
-  static const tinySpacer = SizedBox.square(dimension: 4);
-  static const smallSpacer = SizedBox.square(dimension: 6);
-  static const mediumSpacer = SizedBox.square(dimension: 8);
-  static const largeSpacer = SizedBox.square(dimension: 12);
-  static const imageRadius = 16.0;
-  static const listItemPadding = EdgeInsets.symmetric(vertical: 8);
+  static const smallSpacing = 6.0;
+  static const mediumSpacing = 8.0;
+  static const largeSpacing = 12.0;
+  static const extraLargeSpacing = 20.0;
+  static const imageRadius = 12.0;
+  static const listItemPadding = EdgeInsets.symmetric(horizontal: 32, vertical: 12);
 }
 
 class DialogPaddings {

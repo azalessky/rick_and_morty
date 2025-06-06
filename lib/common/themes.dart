@@ -7,7 +7,7 @@ class Themes {
 
   ThemeData _buildTheme(Brightness brightness) {
     final themeData = ThemeData(brightness: brightness);
-    final textTheme = GoogleFonts.latoTextTheme(themeData.textTheme);
+    final textTheme = GoogleFonts.orbitTextTheme(themeData.textTheme);
 
     return themeData.copyWith(
       textTheme: textTheme,

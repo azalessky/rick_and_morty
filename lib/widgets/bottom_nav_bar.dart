@@ -23,7 +23,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = [
       NavBarItem(Icons.home_outlined, Icons.home, 'HomeScreen.Characters'.tr()),
-      NavBarItem(Icons.favorite_border, Icons.favorite, 'HomeScreen.Favorites'.tr()),
+      NavBarItem(Icons.star_border, Icons.star, 'HomeScreen.Favorites'.tr()),
       NavBarItem(Icons.settings_outlined, Icons.settings, 'HomeScreen.Settings'.tr()),
     ];
 
