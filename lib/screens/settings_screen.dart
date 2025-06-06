@@ -48,6 +48,5 @@ class SettingsScreen extends ConsumerWidget {
 
   void _updateThemeMode(WidgetRef ref, ThemeMode value) {
     ref.read(settingsStateProvider.notifier).themeMode = value;
-    // cachedRepository.saveData();
   }
 }

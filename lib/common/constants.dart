@@ -5,6 +5,11 @@ class ApiSettings {
   static const requestTimeout = Duration(seconds: 30);
 }
 
+class RepositorySettings {
+  static const charactersKey = 'characters';
+  static const settingsKey = 'settings';
+}
+
 class DefaultSettings {
   static const themeMode = ThemeMode.dark;
 }

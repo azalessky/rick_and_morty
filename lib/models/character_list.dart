@@ -19,4 +19,10 @@ abstract class CharacterList with _$CharacterList {
   bool get hasMore => next.isNotEmpty;
 
   factory CharacterList.fromJson(Map<String, dynamic> json) => _$CharacterListFromJson(json);
+
+  factory CharacterList.empty() => CharacterList(
+    prev: '',
+    next: '',
+    items: [],
+  );
 }

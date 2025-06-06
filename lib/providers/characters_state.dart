@@ -8,29 +8,33 @@ part 'characters_state.g.dart';
 @Riverpod(keepAlive: true)
 class CharactersState extends _$CharactersState {
   @override
-  Future<CharacterList> build() => loadData();
-
-  Future<CharacterList> loadData() async {
-    // TODO: Load from persistent storage
-    return remoteRepository.getCharacters(null);
+  Future<CharacterList> build() async {
+    return localRepository.loadCharacters() ?? CharacterList.empty();
   }
 
   Future<void> loadNext() async {
     state = await AsyncValue.guard(() async {
-      return remoteRepository.getCharacters(state.requireValue);
+      final current = state.hasValue && state.requireValue.items.isNotEmpty
+          ? state.requireValue
+          : null;
+      final data = await remoteRepository.loadCharacters(current);
+
+      await localRepository.saveCharacters(data);
+      return data;
     });
   }
 
-  void toggleFavorite(Character character) {
+  Future<void> toggleFavorite(Character character) async {
     if (!state.hasValue) return;
 
     final items = [...state.requireValue.items];
     final index = items.indexWhere((c) => c.id == character.id);
+    if (index < 0) return;
 
-    if (index >= 0) {
-      final item = items[index];
-      items[index] = item.copyWith(favorite: !item.favorite);
-      state = AsyncValue.data(state.requireValue.copyWith(items: items));
-    }
+    final item = items[index];
+    items[index] = item.copyWith(favorite: !item.favorite);
+    state = AsyncValue.data(state.requireValue.copyWith(items: items));
+
+    await localRepository.saveCharacters(state.requireValue);
   }
 }
