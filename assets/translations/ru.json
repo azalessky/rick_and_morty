@@ -1,12 +1,11 @@
 {
-    "App.Title": "Рики и Морти",
+    "App.Title": "Рик и Морти",
     
     "HomeScreen.Characters": "Персонажи",
     "HomeScreen.Favorites": "Избранное",
     "HomeScreen.Settings": "Настройки",
 
     "CharactersScreen.Title": "Персонажи",
-    "CharactersScreen.EmptyText": "Нет персонажей.\nПопробуйте повторить позже.",
     "CharactersScreen.ErrorText": "Ошибка сервера.\nПопробуйте повторить позже.",
     "CharactersScreen.ErrorItem": "Ошибка сервера.",
 

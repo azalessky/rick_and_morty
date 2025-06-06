@@ -33,7 +33,6 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen> {
         title: Text('CharactersScreen.Title'.tr()),
       ),
       body: CharacterListView(
-        emptyText: 'CharactersScreen.EmptyText'.tr(),
         errorText: 'CharactersScreen.ErrorText'.tr(),
         errorItem: 'CharactersScreen.ErrorItem'.tr(),
       ),

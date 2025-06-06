@@ -6,12 +6,10 @@ import 'package:rick_and_morty/providers/providers.dart';
 import 'package:rick_and_morty/widgets/widgets.dart';
 
 class CharacterListView extends ConsumerStatefulWidget {
-  final String emptyText;
   final String errorText;
   final String errorItem;
 
   const CharacterListView({
-    required this.emptyText,
     required this.errorText,
     required this.errorItem,
     super.key,
@@ -26,13 +24,6 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
   bool hasMore = true;
   bool isLoadingMore = false;
   bool isRefreshing = false;
-
-  @override
-  void initState() {
-    super.initState();
-    // TODO: Remove this if no bugs
-    //  ref.listenManual(charactersStateProvider, (_, state) => _resetScrollController(state));
-  }
 
   @override
   void dispose() {
@@ -56,7 +47,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
           if (data.items.isNotEmpty) {
             return _buildListView(data);
           } else {
-            return EmptyPlaceholder(text: widget.emptyText);
+            return const Center(child: CircularProgressIndicator());
           }
         },
         error: (_, _) {
@@ -125,15 +116,6 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
 
       hasMore = posts.value?.hasMore ?? false;
       isLoadingMore = false;
-    }
-  }
-
-  void _resetScrollController(AsyncValue<CharacterList> state) {
-    if (state.hasValue && state.requireValue.isFirst) {
-      hasMore = true;
-      if (scrollController.hasClients) {
-        scrollController.jumpTo(0);
-      }
     }
   }
 }
