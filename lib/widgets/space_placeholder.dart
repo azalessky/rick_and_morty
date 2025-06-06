@@ -33,19 +33,23 @@ class SpacePlaceholder extends StatelessWidget {
     final color = showError ? Theme.of(context).colorScheme.error : null;
     final lines = text.split('\n');
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          lines[0],
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
-        ),
-        FormLayout.largeSpacer,
-        Text(
-          lines[1],
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            lines[0],
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
+          ),
+          if (lines.length > 1) ...[
+            FormLayout.largeSpacer,
+            Text(
+              lines[1],
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

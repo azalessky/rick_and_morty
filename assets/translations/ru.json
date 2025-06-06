@@ -11,7 +11,9 @@
     "CharactersScreen.ErrorItem": "Ошибка сервера.",
 
     "FavoritesScreen.Title": "Избранное",
-    
+    "FavoritesScreen.Empty": "Нет персонажей.\nДобавьте в избранное из списка.",
+    "FavoritesScreen.Error": "Произошла ошибка.\nПопробуйте повторить позже.",
+   
     "SettingsScreen.Title": "Настройки",
     "SettingsScreen.ThemeMode": "Режим темы",
 

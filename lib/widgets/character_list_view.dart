@@ -56,9 +56,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
           if (data.items.isNotEmpty) {
             return _buildListView(data);
           } else {
-            return Center(
-              child: EmptyPlaceholder(text: widget.emptyText),
-            );
+            return EmptyPlaceholder(text: widget.emptyText);
           }
         },
         error: (_, _) {
