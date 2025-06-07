@@ -52,6 +52,7 @@ class MainApp extends StatelessWidget {
       themeMode: settings.themeMode,
       theme: themes.lightTheme(),
       darkTheme: themes.darkTheme(),
+      scaffoldMessengerKey: messages.globalKey,
       routerConfig: routes.config(),
     );
   }

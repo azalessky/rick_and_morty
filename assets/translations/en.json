@@ -19,5 +19,8 @@
 
     "ThemeMode.light": "Light",
     "ThemeMode.dark": "Dark",
-    "ThemeMode.system": "System"
+    "ThemeMode.system": "System",
+
+    "Message.FavoriteAdded": "'{}' added to favorites.",
+    "Message.FavoriteRemoved": "'{}' removed from favorites."
 }

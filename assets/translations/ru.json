@@ -18,5 +18,8 @@
 
     "ThemeMode.light": "Светлый",
     "ThemeMode.dark": "Темный",
-    "ThemeMode.system": "Системный"
+    "ThemeMode.system": "Системный",
+
+    "Message.FavoriteAdded": "'{}' добавлен в избранное.",
+    "Message.FavoriteRemoved": "'{}' удален из избранного."
 }

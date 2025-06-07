@@ -35,8 +35,15 @@ class CharacterListItem extends ConsumerWidget {
                   right: iconOffset,
                   child: FavoriteIcon(
                     character: character,
-                    onPressed: () =>
-                        ref.read(charactersStateProvider.notifier).toggleFavorite(character),
+                    onPressed: () {
+                      ref.read(charactersStateProvider.notifier).toggleFavorite(character);
+                      messages.showMessage(
+                        character.favorite
+                            ? UserMessage.favoriteRemoved
+                            : UserMessage.favoriteAdded,
+                        [character.name],
+                      );
+                    },
                   ),
                 ),
               ],
