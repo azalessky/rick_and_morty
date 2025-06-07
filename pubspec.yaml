@@ -31,8 +31,17 @@ dev_dependencies:
   auto_route_generator: ^10.2.3
   json_serializable: ^6.9.5
   riverpod_generator: ^2.6.1
+  flutter_launcher_icons: ^0.14.3
 
+flutter_launcher_icons:
+  image_path_android: "assets/icons/app.png"
+  image_path_ios: "assets/icons/app.png"  
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  
 flutter:
   uses-material-design: true
   assets:
     - assets/translations/
+    - assets/icons/   
