@@ -23,6 +23,8 @@ class FavoritesScreen extends ConsumerWidget {
       body: characters.when(
         data: (data) {
           final items = data.items.where((c) => c.favorite).toList();
+          items.sort((a, b) => a.name.compareTo(b.name));
+
           return items.isEmpty
               ? EmptyPlaceholder(text: 'FavoritesScreen.Empty'.tr())
               : _buildListView(items);
