@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:rick_and_morty/common/common.dart';
-
 class CharacterImage extends StatelessWidget {
+  static const imageRadius = 12.0;
+
   final String imageUrl;
 
   const CharacterImage({
@@ -17,7 +17,7 @@ class CharacterImage extends StatelessWidget {
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       imageBuilder: (context, imageProvider) => ClipRRect(
-        borderRadius: BorderRadius.circular(FormLayout.imageRadius),
+        borderRadius: BorderRadius.circular(imageRadius),
         child: Image(
           image: imageProvider,
           fit: BoxFit.cover,

@@ -8,7 +8,7 @@ import 'package:rick_and_morty/providers/providers.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Depedencies.initialize();
+  await Dependencies.initialize();
   await Localization.initialize();
 
   runApp(

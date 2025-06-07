@@ -1,34 +1,25 @@
-import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:rick_and_morty/common/common.dart';
+import 'package:rick_and_morty/services/services.dart';
 import 'package:rick_and_morty/models/models.dart';
 
 class LocalRepository {
-  final SharedPreferences prefs;
+  final StorageService storage;
 
-  const LocalRepository._({required this.prefs});
-
-  static Future<LocalRepository> getInstance() async {
-    return LocalRepository._(prefs: await SharedPreferences.getInstance());
-  }
+  LocalRepository({required this.storage});
 
   Future<void> saveCharacters(CharacterList data) async {
-    await prefs.setString(RepositorySettings.charactersKey, jsonEncode(data));
+    return storage.saveData(RepositorySettings.charactersKey, data);
   }
 
   CharacterList? loadCharacters() {
-    final data = prefs.getString(RepositorySettings.charactersKey);
-    return data == null ? null : CharacterList.fromJson(jsonDecode(data));
+    return storage.loadData(RepositorySettings.charactersKey, CharacterList.fromJson);
   }
 
   Future<void> saveSettings(Settings data) async {
-    await prefs.setString(RepositorySettings.settingsKey, jsonEncode(data));
+    return storage.saveData(RepositorySettings.settingsKey, data);
   }
 
   Settings? loadSettings() {
-    final data = prefs.getString(RepositorySettings.settingsKey);
-    return data == null ? null : Settings.fromJson(jsonDecode(data));
+    return storage.loadData(RepositorySettings.settingsKey, Settings.fromJson);
   }
 }

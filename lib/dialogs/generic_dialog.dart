@@ -122,8 +122,7 @@ class DialogActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        // TODO: Move to constants
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: DialogPaddings.actionButton,
         child: TextButton(
           onPressed: onPressed,
           child: Text(title),

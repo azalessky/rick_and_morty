@@ -28,9 +28,7 @@ class BottomNavBar extends StatelessWidget {
     ];
 
     return BottomNavigationBar(
-      elevation: 0,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.transparent,
       currentIndex: currentIndex,
       onTap: onTap,
       items: items.asMap().entries.map(

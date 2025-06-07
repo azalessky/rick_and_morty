@@ -8,6 +8,9 @@ import 'package:rick_and_morty/providers/providers.dart';
 import 'package:rick_and_morty/widgets/widgets.dart';
 
 class CharacterListItem extends ConsumerWidget {
+  static const iconOffset = -6.0;
+  static const itemPadding = EdgeInsets.symmetric(horizontal: 32, vertical: 8);
+
   final Character character;
 
   const CharacterListItem({
@@ -18,13 +21,26 @@ class CharacterListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: FormLayout.listItemPadding,
+      padding: itemPadding,
       child: Row(
         spacing: FormLayout.extraLargeSpacing,
         children: [
           Expanded(
             flex: 1,
-            child: CharacterImage(imageUrl: character.image),
+            child: Stack(
+              children: [
+                CharacterImage(imageUrl: character.image),
+                Positioned(
+                  top: iconOffset,
+                  right: iconOffset,
+                  child: FavoriteIcon(
+                    character: character,
+                    onPressed: () =>
+                        ref.read(charactersStateProvider.notifier).toggleFavorite(character),
+                  ),
+                ),
+              ],
+            ),
           ),
           Expanded(
             flex: 1,
@@ -32,7 +48,6 @@ class CharacterListItem extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: FormLayout.smallSpacing,
               children: [
-                //     _buildFavoriteIcon(ref),
                 context.textLarge(character.name),
                 context.textMedium(character.species),
               ],
@@ -40,16 +55,6 @@ class CharacterListItem extends ConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildFavoriteIcon(WidgetRef ref) {
-    return IconButton(
-      icon: Icon(
-        character.favorite ? Icons.star : Icons.star_border,
-        color: character.favorite ? Colors.yellow : Colors.grey,
-      ),
-      onPressed: () => ref.read(charactersStateProvider.notifier).toggleFavorite(character),
     );
   }
 }

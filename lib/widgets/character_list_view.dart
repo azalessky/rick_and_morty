@@ -73,7 +73,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
               character: character,
             );
           } else {
-            return _buildLoadMoreIndicator();
+            return LoadMoreIndicator();
           }
         },
       ),
@@ -91,19 +91,6 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
           child: ErrorPlaceholder(text: widget.errorText),
         ),
       ],
-    );
-  }
-
-  Widget _buildLoadMoreIndicator() {
-    // TODO: Move to widgets
-    return const Padding(
-      padding: EdgeInsets.only(top: 12, bottom: 24),
-      child: Center(
-        child: SizedBox.square(
-          dimension: 24,
-          child: CircularProgressIndicator(strokeWidth: 3),
-        ),
-      ),
     );
   }
 
