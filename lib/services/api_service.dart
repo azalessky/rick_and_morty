@@ -31,14 +31,11 @@ class ApiService {
       if (response.statusCode == 200) {
         try {
           final data = json.decode(response.body);
-          final results = data['results'];
+          final results = data['results'] as List;
 
-          final prev = data['info']['prev'] ?? '';
-          final next = data['info']['next'] ?? '';
-          final items = results.map<Character>((json) {
-            json['favorite'] = false;
-            return Character.fromJson(json);
-          }).toList();
+          final prev = data['info']['prev'] as String? ?? '';
+          final next = data['info']['next'] as String? ?? '';
+          final items = results.map<Character>((json) => Character.fromJson(json)).toList();
 
           return CharacterList(prev: prev, next: next, items: items);
         } catch (e) {

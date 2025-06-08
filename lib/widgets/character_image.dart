@@ -16,8 +16,6 @@ class CharacterImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      fadeInDuration: Duration.zero,
-      fadeOutDuration: Duration.zero,
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       imageBuilder: (_, imageProvider) => _buildImageFrame(

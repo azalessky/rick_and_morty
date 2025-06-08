@@ -24,7 +24,6 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(favoritesStateProvider);
     final posts = ref.watch(charactersStateProvider);
 
     return RefreshIndicator(
@@ -55,7 +54,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
     );
   }
 
-  Widget _buildListView(CharacterList characters, Widget loadingIndicator) {
+  Widget _buildListView(CharacterList characters, Widget moreIndicator) {
     return NotificationListener<OverscrollNotification>(
       child: ListView.builder(
         physics: const ClampingScrollPhysics(),
@@ -63,12 +62,17 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
         itemBuilder: (_, index) {
           if (index < characters.items.length) {
             final character = characters.items[index];
+            ref.watch(
+              favoritesStateProvider.select(
+                (favorites) => favorites.items.any((c) => c.id == character.id),
+              ),
+            );
             return CharacterListItem(
               key: ValueKey(character.id),
               character: character,
             );
           } else {
-            return loadingIndicator;
+            return moreIndicator;
           }
         },
       ),
@@ -81,7 +85,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
 
   Widget _buildErrorListItem(Object error) {
     return SizedBox(
-      height: 64,
+      height: 60,
       child: Center(
         child: SpacePlaceholder(
           text: widget.errorTextBuilder(error),

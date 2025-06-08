@@ -11,7 +11,7 @@ class DefaultSettings {
 
 class ApiSettings {
   static const characterEndpoint = 'https://rickandmortyapi.com/api/character';
-  static const requestTimeout = Duration(seconds: 15);
+  static const requestTimeout = Duration(seconds: 30);
 }
 
 class RepositorySettings {
