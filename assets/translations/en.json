@@ -11,16 +11,19 @@
 
     "FavoritesScreen.Title": "Favorites",
     "FavoritesScreen.Empty": "No characters.\nAdd to favorites from the list.",
-    "FavoritesScreen.Error": "Error occurred.\nPlease try again later.",
 
     "SettingsScreen.Title": "Settings",
-
     "SettingsScreen.ThemeMode": "Theme mode",
+    
+    "Message.FavoriteAdded": "'{}' added to favorites.",
+    "Message.FavoriteRemoved": "'{}' removed from favorites.",
 
     "ThemeMode.light": "Light",
     "ThemeMode.dark": "Dark",
     "ThemeMode.system": "System",
 
-    "Message.FavoriteAdded": "'{}' added to favorites.",
-    "Message.FavoriteRemoved": "'{}' removed from favorites."
+    "ApiError.general": "Application error.\nContact support.",
+    "ApiError.connection": "No connection.\nCheck your connection.",
+    "ApiError.server": "Server error.\nTry again later.",
+    "ApiError.data": "Data error.\nUpdate the application."
 }

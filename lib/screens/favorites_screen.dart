@@ -21,7 +21,7 @@ class FavoritesScreen extends ConsumerWidget {
         title: Text('FavoritesScreen.Title'.tr()),
       ),
       body: favorites.items.isEmpty
-          ? EmptyPlaceholder(text: 'FavoritesScreen.Empty'.tr())
+          ? SpacePlaceholder(text: 'FavoritesScreen.Empty'.tr())
           : _buildListView(favorites.items),
     );
   }

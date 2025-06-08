@@ -2,29 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:rick_and_morty/common/common.dart';
 
-class EmptyPlaceholder extends SpacePlaceholder {
-  const EmptyPlaceholder({
-    required super.text,
-    super.showError = false,
-    super.key,
-  });
-}
-
-class ErrorPlaceholder extends SpacePlaceholder {
-  const ErrorPlaceholder({
-    required super.text,
-    super.showError = true,
-    super.key,
-  });
-}
-
 class SpacePlaceholder extends StatelessWidget {
   final String text;
+  final bool compact;
   final bool showError;
 
   const SpacePlaceholder({
     required this.text,
-    required this.showError,
+    this.compact = false,
+    this.showError = false,
     super.key,
   });
 
@@ -33,20 +19,17 @@ class SpacePlaceholder extends StatelessWidget {
     final color = showError ? Theme.of(context).colorScheme.error : null;
     final lines = text.split('\n');
 
+    final textTheme = Theme.of(context).textTheme;
+    final titleStyle = textTheme.titleMedium!.copyWith(color: color);
+    final bodyStyle = textTheme.bodyMedium!.copyWith(color: color);
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        spacing: FormLayout.largeSpacing,
+        spacing: compact ? FormLayout.extraSmallSpacing : FormLayout.largeSpacing,
         children: [
-          Text(
-            lines[0],
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
-          ),
-          if (lines.length > 1)
-            Text(
-              lines[1],
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
-            ),
+          Text(lines[0], style: compact ? bodyStyle : titleStyle),
+          if (lines.length > 1) Text(lines[1], style: bodyStyle),
         ],
       ),
     );

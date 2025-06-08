@@ -6,7 +6,7 @@ class LoadMoreIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(top: 16, bottom: 32),
+      padding: EdgeInsets.only(top: 16, bottom: 24),
       child: Center(
         child: SizedBox.square(
           dimension: 24,

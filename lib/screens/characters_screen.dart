@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rick_and_morty/providers/providers.dart';
+import 'package:rick_and_morty/services/services.dart';
 import 'package:rick_and_morty/widgets/widgets.dart';
 
 @RoutePage()
@@ -34,8 +35,10 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen> {
         title: Text('CharactersScreen.Title'.tr()),
       ),
       body: CharacterListView(
-        errorText: 'CharactersScreen.ErrorText'.tr(),
-        errorItem: 'CharactersScreen.ErrorItem'.tr(),
+        errorTextBuilder: (e) => switch (e) {
+          ApiException() => e.error.toString().tr(),
+          _ => e.toString(),
+        },
       ),
     );
   }

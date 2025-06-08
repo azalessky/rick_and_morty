@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:rick_and_morty/common/common.dart';
-import 'package:rick_and_morty/services/services.dart';
 import 'package:rick_and_morty/models/models.dart';
 
 part 'characters_state.g.dart';
@@ -19,17 +18,9 @@ class CharactersState extends _$CharactersState {
           ? state.requireValue
           : null;
 
-      try {
-        final data = await remoteRepository.loadCharacters(current);
-        await localRepository.saveCharacters(data);
-        return data;
-      } on ApiException catch (_) {
-        // if (current != null) {
-        //   return current;
-        // } else {
-        rethrow;
-        //   }
-      }
+      final data = await remoteRepository.loadCharacters(current);
+      await localRepository.saveCharacters(data);
+      return data;
     });
   }
 }

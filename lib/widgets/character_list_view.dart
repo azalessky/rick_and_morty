@@ -6,12 +6,10 @@ import 'package:rick_and_morty/providers/providers.dart';
 import 'package:rick_and_morty/widgets/widgets.dart';
 
 class CharacterListView extends ConsumerStatefulWidget {
-  final String errorText;
-  final String errorItem;
+  final String Function(Object) errorTextBuilder;
 
   const CharacterListView({
-    required this.errorText,
-    required this.errorItem,
+    required this.errorTextBuilder,
     super.key,
   });
 
@@ -20,16 +18,9 @@ class CharacterListView extends ConsumerStatefulWidget {
 }
 
 class _CharactersListViewState extends ConsumerState<CharacterListView> {
-  var scrollController = ScrollController();
   bool hasMore = true;
   bool isLoadingMore = false;
   bool isRefreshing = false;
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +37,17 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
         data: (data) {
           isRefreshing = false;
           if (data.items.isNotEmpty) {
-            return _buildListView(data);
+            return _buildListView(data, LoadMoreIndicator());
           } else {
             return const Center(child: CircularProgressIndicator());
           }
         },
-        error: (_, _) {
+        error: (error, _) {
           isRefreshing = false;
           if (posts.hasValue && posts.requireValue.items.isNotEmpty) {
-            return _buildListView(posts.requireValue);
+            return _buildListView(posts.requireValue, _buildErrorListItem(error));
           } else {
-            return _buildErrorPlaceholder();
+            return _buildErrorPlaceholder(error);
           }
         },
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -64,10 +55,9 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
     );
   }
 
-  Widget _buildListView(CharacterList characters) {
+  Widget _buildListView(CharacterList characters, Widget loadingIndicator) {
     return NotificationListener<OverscrollNotification>(
       child: ListView.builder(
-        controller: scrollController,
         physics: const ClampingScrollPhysics(),
         itemCount: characters.items.length + (characters.hasMore ? 1 : 0),
         itemBuilder: (_, index) {
@@ -78,7 +68,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
               character: character,
             );
           } else {
-            return LoadMoreIndicator();
+            return loadingIndicator;
           }
         },
       ),
@@ -89,11 +79,27 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
     );
   }
 
-  Widget _buildErrorPlaceholder() {
+  Widget _buildErrorListItem(Object error) {
+    return SizedBox(
+      height: 64,
+      child: Center(
+        child: SpacePlaceholder(
+          text: widget.errorTextBuilder(error),
+          compact: true,
+          showError: true,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildErrorPlaceholder(Object error) {
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
-          child: ErrorPlaceholder(text: widget.errorText),
+          child: SpacePlaceholder(
+            text: widget.errorTextBuilder(error),
+            showError: true,
+          ),
         ),
       ],
     );

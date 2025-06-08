@@ -18,9 +18,11 @@ class RepositorySettings {
   static const charactersKey = 'characters';
   static const favoritesKey = 'favorites';
   static const settingsKey = 'settings';
+  static const cacheKey = 'cache';
 }
 
 class FormLayout {
+  static const extraSmallSpacing = 4.0;
   static const smallSpacing = 6.0;
   static const mediumSpacing = 8.0;
   static const largeSpacing = 12.0;

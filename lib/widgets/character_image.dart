@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:rick_and_morty/common/constants.dart';
 
 class CharacterImage extends StatelessWidget {
@@ -15,12 +16,20 @@ class CharacterImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      fadeInDuration: Duration.zero,
+      fadeOutDuration: Duration.zero,
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       imageBuilder: (_, imageProvider) => _buildImageFrame(
         Image(
           image: imageProvider,
           fit: BoxFit.cover,
+        ),
+      ),
+      placeholder: (_, _) => _buildImageFrame(
+        AspectRatio(
+          aspectRatio: 1.0,
+          child: Container(),
         ),
       ),
       errorWidget: (_, _, _) => _buildImageFrame(

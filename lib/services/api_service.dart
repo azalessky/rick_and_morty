@@ -1,17 +1,20 @@
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:rick_and_morty/common/common.dart';
 import 'package:rick_and_morty/models/models.dart';
 
+enum ApiError { general, connection, server, data }
+
 class ApiException implements Exception {
-  final String message;
-  ApiException(this.message);
+  final ApiError error;
+
+  const ApiException(this.error);
 
   @override
-  String toString() => 'ApiException: $message';
+  String toString() => 'ApiException: $error';
 }
 
 class ApiService {
@@ -22,28 +25,32 @@ class ApiService {
           .get(Uri.parse(url))
           .timeout(
             ApiSettings.requestTimeout,
-            onTimeout: () => throw ApiException('Request timed out'),
+            onTimeout: () => throw ApiException(ApiError.connection),
           );
 
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        final results = data['results'];
+        try {
+          final data = json.decode(response.body);
+          final results = data['results'];
 
-        final prev = data['info']['prev'] ?? '';
-        final next = data['info']['next'] ?? '';
-        final items = results.map<Character>((json) {
-          json['favorite'] = false;
-          return Character.fromJson(json);
-        }).toList();
+          final prev = data['info']['prev'] ?? '';
+          final next = data['info']['next'] ?? '';
+          final items = results.map<Character>((json) {
+            json['favorite'] = false;
+            return Character.fromJson(json);
+          }).toList();
 
-        return CharacterList(prev: prev, next: next, items: items);
+          return CharacterList(prev: prev, next: next, items: items);
+        } catch (e) {
+          throw ApiException(ApiError.data);
+        }
       } else {
-        debugPrint('ApiService::GetCharacters: ${response.statusCode}');
-        throw ApiException('Error when loading data: ${response.statusCode}');
+        throw ApiException(ApiError.server);
       }
     } catch (e) {
-      debugPrint('ApiService::GetCharacters: $e');
-      throw ApiException('Error during server request: $e');
+      throw ApiException(
+        e is SocketException ? ApiError.connection : ApiError.general,
+      );
     }
   }
 }
