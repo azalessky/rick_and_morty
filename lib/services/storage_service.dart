@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService {
@@ -17,6 +18,13 @@ class StorageService {
 
   T? loadData<T>(String key, T Function(Map<String, dynamic>) fromJson) {
     final data = prefs.getString(key);
-    return data == null ? null : fromJson(jsonDecode(data));
+    if (data == null) return null;
+
+    try {
+      return fromJson(jsonDecode(data));
+    } catch (e) {
+      debugPrint('StorageService::loadData: key = $key, $e');
+      return null;
+    }
   }
 }

@@ -20,13 +20,14 @@ class CharacterListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isSelected = ref.read(favoritesStateProvider.notifier).isFavorite(character);
+
     return Padding(
       padding: itemPadding,
       child: Row(
         spacing: FormLayout.extraLargeSpacing,
         children: [
           Expanded(
-            flex: 1,
             child: Stack(
               children: [
                 CharacterImage(imageUrl: character.image),
@@ -34,23 +35,14 @@ class CharacterListItem extends ConsumerWidget {
                   top: iconOffset,
                   right: iconOffset,
                   child: FavoriteIcon(
-                    character: character,
-                    onPressed: () {
-                      ref.read(charactersStateProvider.notifier).toggleFavorite(character);
-                      messages.showMessage(
-                        character.favorite
-                            ? UserMessage.favoriteRemoved
-                            : UserMessage.favoriteAdded,
-                        [character.name],
-                      );
-                    },
+                    isSelected: isSelected,
+                    onPressed: () => _toggleFavorite(ref),
                   ),
                 ),
               ],
             ),
           ),
           Expanded(
-            flex: 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: FormLayout.smallSpacing,
@@ -62,6 +54,14 @@ class CharacterListItem extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _toggleFavorite(WidgetRef ref) async {
+    final favorite = await ref.read(favoritesStateProvider.notifier).toggleFavorite(character);
+    messages.showMessage(
+      favorite ? UserMessage.favoriteAdded : UserMessage.favoriteRemoved,
+      [character.name],
     );
   }
 }

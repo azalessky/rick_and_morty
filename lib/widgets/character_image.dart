@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rick_and_morty/common/constants.dart';
 
 class CharacterImage extends StatelessWidget {
   static const imageRadius = 12.0;
@@ -16,13 +17,25 @@ class CharacterImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: imageUrl,
       fit: BoxFit.cover,
-      imageBuilder: (context, imageProvider) => ClipRRect(
-        borderRadius: BorderRadius.circular(imageRadius),
-        child: Image(
+      imageBuilder: (_, imageProvider) => _buildImageFrame(
+        Image(
           image: imageProvider,
           fit: BoxFit.cover,
         ),
       ),
+      errorWidget: (_, _, _) => _buildImageFrame(
+        Image.asset(
+          ResourceSettings.imagePlaceholder,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImageFrame(Widget child) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(imageRadius),
+      child: child,
     );
   }
 }

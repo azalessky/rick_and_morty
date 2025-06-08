@@ -33,6 +33,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(favoritesStateProvider);
     final posts = ref.watch(charactersStateProvider);
 
     return RefreshIndicator(
@@ -52,7 +53,11 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
         },
         error: (_, _) {
           isRefreshing = false;
-          return _buildErrorPlaceholder();
+          if (posts.hasValue && posts.requireValue.items.isNotEmpty) {
+            return _buildListView(posts.requireValue);
+          } else {
+            return _buildErrorPlaceholder();
+          }
         },
         loading: () => const Center(child: CircularProgressIndicator()),
       ),

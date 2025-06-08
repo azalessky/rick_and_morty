@@ -19,5 +19,5 @@ Map<String, dynamic> _$CharacterListToJson(_CharacterList instance) =>
     <String, dynamic>{
       'prev': instance.prev,
       'next': instance.next,
-      'items': instance.items,
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import 'package:rick_and_morty/common/common.dart';
+
 class Localization extends StatelessWidget {
   final Widget child;
 
@@ -22,7 +24,7 @@ class Localization extends StatelessWidget {
         Locale('en'),
         Locale('ru'),
       ],
-      path: 'assets/translations',
+      path: ResourceSettings.localizatioPath,
       fallbackLocale: const Locale('en'),
       child: child,
     );

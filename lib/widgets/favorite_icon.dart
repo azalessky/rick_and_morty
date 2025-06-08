@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:rick_and_morty/models/models.dart';
-
 class FavoriteIcon extends StatelessWidget {
   static const iconSize = 14.0;
   static const frameSize = 2.0;
@@ -9,11 +7,11 @@ class FavoriteIcon extends StatelessWidget {
   static const selectedFillColor = Colors.yellow;
   static const selectedFrameColor = Colors.black;
 
-  final Character character;
+  final bool isSelected;
   final void Function()? onPressed;
 
   const FavoriteIcon({
-    required this.character,
+    required this.isSelected,
     this.onPressed,
     super.key,
   });
@@ -21,8 +19,8 @@ class FavoriteIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final iconColor = character.favorite ? selectedFillColor : colorScheme.surface;
-    final frameColor = character.favorite ? selectedFrameColor : colorScheme.surface;
+    final iconColor = isSelected ? selectedFillColor : colorScheme.surface;
+    final frameColor = isSelected ? selectedFrameColor : colorScheme.surface;
 
     return IconButton(
       visualDensity: VisualDensity.compact,

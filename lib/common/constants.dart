@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
-class ApiSettings {
-  static const characterEndpoint = 'https://rickandmortyapi.com/api/character';
-  static const requestTimeout = Duration(seconds: 30);
-}
-
-class RepositorySettings {
-  static const charactersKey = 'characters';
-  static const settingsKey = 'settings';
+class ResourceSettings {
+  static const localizatioPath = 'assets/translations';
+  static const imagePlaceholder = 'assets/images/placeholder.jpeg';
 }
 
 class DefaultSettings {
   static const themeMode = ThemeMode.dark;
+}
+
+class ApiSettings {
+  static const characterEndpoint = 'https://rickandmortyapi.com/api/character';
+  static const requestTimeout = Duration(seconds: 15);
+}
+
+class RepositorySettings {
+  static const charactersKey = 'characters';
+  static const favoritesKey = 'favorites';
+  static const settingsKey = 'settings';
 }
 
 class FormLayout {

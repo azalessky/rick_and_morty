@@ -19,9 +19,10 @@ class _CharactersScreenState extends ConsumerState<CharactersScreen> {
   void initState() {
     super.initState();
 
-    Future.microtask(() async {
-      await ref.read(charactersStateProvider.future);
-      await ref.read(charactersStateProvider.notifier).loadNext();
+    ref.listenManual(charactersStateProvider, (prev, next) {
+      if ((prev is AsyncLoading || prev is AsyncError) && next is AsyncData) {
+        ref.read(charactersStateProvider.notifier).loadNext();
+      }
     });
   }
 

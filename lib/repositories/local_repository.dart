@@ -15,6 +15,14 @@ class LocalRepository {
     return storage.loadData(RepositorySettings.charactersKey, CharacterList.fromJson);
   }
 
+  Future<void> saveFavorites(FavoriteList data) async {
+    return storage.saveData(RepositorySettings.favoritesKey, data);
+  }
+
+  FavoriteList? loadFavorites() {
+    return storage.loadData(RepositorySettings.favoritesKey, FavoriteList.fromJson);
+  }
+
   Future<void> saveSettings(Settings data) async {
     return storage.saveData(RepositorySettings.settingsKey, data);
   }
