@@ -18,7 +18,6 @@ class RepositorySettings {
   static const charactersKey = 'characters';
   static const favoritesKey = 'favorites';
   static const settingsKey = 'settings';
-  static const cacheKey = 'cache';
 }
 
 class FormLayout {

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:rick_and_morty/common/common.dart';
 import 'package:rick_and_morty/models/models.dart';
 
-enum ApiError { general, connection, server, data }
+enum ApiError { general, network, server, data }
 
 class ApiException implements Exception {
   final ApiError error;
@@ -25,7 +25,7 @@ class ApiService {
           .get(Uri.parse(url))
           .timeout(
             ApiSettings.requestTimeout,
-            onTimeout: () => throw ApiException(ApiError.connection),
+            onTimeout: () => throw ApiException(ApiError.network),
           );
 
       if (response.statusCode == 200) {
@@ -49,7 +49,7 @@ class ApiService {
       }
     } catch (e) {
       throw ApiException(
-        e is SocketException ? ApiError.connection : ApiError.general,
+        e is SocketException ? ApiError.network : ApiError.general,
       );
     }
   }

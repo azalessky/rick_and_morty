@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FavoriteIcon extends StatelessWidget {
-  static const iconSize = 14.0;
+  static const iconSize = 16.0;
   static const frameSize = 2.0;
   static const alphaValue = 240;
   static const selectedFillColor = Colors.yellow;

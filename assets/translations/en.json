@@ -23,7 +23,7 @@
     "ThemeMode.system": "System",
 
     "ApiError.general": "Application error.\nContact support.",
-    "ApiError.connection": "No connection.\nCheck your connection.",
+    "ApiError.network": "Network error.\nCheck your connection.",
     "ApiError.server": "Server error.\nTry again later.",
     "ApiError.data": "Data error.\nUpdate the application."
 }
