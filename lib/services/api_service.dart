@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:rick_and_morty/common/common.dart';
@@ -37,9 +38,11 @@ class ApiService {
 
         return CharacterList(prev: prev, next: next, items: items);
       } else {
+        debugPrint('ApiService::GetCharacters: ${response.statusCode}');
         throw ApiException('Error when loading data: ${response.statusCode}');
       }
     } catch (e) {
+      debugPrint('ApiService::GetCharacters: $e');
       throw ApiException('Error during server request: $e');
     }
   }
