@@ -12,9 +12,11 @@ class CharacterListItem extends ConsumerWidget {
   static const itemPadding = EdgeInsets.symmetric(horizontal: 32, vertical: 8);
 
   final Character character;
+  final void Function(bool)? onToggleFavorite;
 
   const CharacterListItem({
     required this.character,
+    this.onToggleFavorite,
     super.key,
   });
 
@@ -36,7 +38,7 @@ class CharacterListItem extends ConsumerWidget {
                   right: iconOffset,
                   child: FavoriteIcon(
                     isSelected: isSelected,
-                    onPressed: () => _toggleFavorite(ref),
+                    onPressed: () => onToggleFavorite?.call(!isSelected),
                   ),
                 ),
               ],
@@ -54,14 +56,6 @@ class CharacterListItem extends ConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  void _toggleFavorite(WidgetRef ref) async {
-    final favorite = await ref.read(favoritesStateProvider.notifier).toggleFavorite(character);
-    messages.showMessage(
-      favorite ? UserMessage.favoriteAdded : UserMessage.favoriteRemoved,
-      [character.name],
     );
   }
 }

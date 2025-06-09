@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:rick_and_morty/common/common.dart';
 import 'package:rick_and_morty/models/models.dart';
 import 'package:rick_and_morty/providers/providers.dart';
 import 'package:rick_and_morty/widgets/widgets.dart';
@@ -70,6 +71,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
             return CharacterListItem(
               key: ValueKey(character.id),
               character: character,
+              onToggleFavorite: (value) => _handleToggleFavorite(character),
             );
           } else {
             return moreIndicator;
@@ -119,5 +121,13 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
       hasMore = posts.value?.hasMore ?? false;
       isLoadingMore = false;
     }
+  }
+
+  void _handleToggleFavorite(Character character) async {
+    final favorite = await ref.read(favoritesStateProvider.notifier).toggleFavorite(character);
+    messages.showMessage(
+      favorite ? UserMessage.favoriteAdded : UserMessage.favoriteRemoved,
+      [character.name],
+    );
   }
 }
