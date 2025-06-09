@@ -34,8 +34,8 @@ class ValueListDialog<T> extends StatefulWidget {
 }
 
 class _ValueListDialogState<T> extends State<ValueListDialog<T>> {
-  final scrollController = ScrollController();
-  final Map<T, GlobalKey> itemKeys = {};
+  final _scrollController = ScrollController();
+  final Map<T, GlobalKey> _itemKeys = {};
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _ValueListDialogState<T> extends State<ValueListDialog<T>> {
 
   @override
   void dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -74,7 +74,7 @@ class _ValueListDialogState<T> extends State<ValueListDialog<T>> {
     return LimitedBox(
       maxHeight: MediaQuery.of(context).size.height * ValueListDialog.contentFraction,
       child: SingleChildScrollView(
-        controller: scrollController,
+        controller: _scrollController,
         child: Column(children: _buildItemList()),
       ),
     );
@@ -84,7 +84,7 @@ class _ValueListDialogState<T> extends State<ValueListDialog<T>> {
     return widget.values
         .map(
           (value) => ListTile(
-            key: itemKeys[value] = GlobalKey(),
+            key: _itemKeys[value] = GlobalKey(),
             contentPadding: DialogPaddings.valueTile,
             title: Align(
               alignment: widget.alignment,
@@ -108,7 +108,7 @@ class _ValueListDialogState<T> extends State<ValueListDialog<T>> {
 
   void _scrollToValue(T? value) {
     if (value == null) return;
-    final context = itemKeys[value]?.currentContext;
+    final context = _itemKeys[value]?.currentContext;
     if (context != null) Scrollable.ensureVisible(context);
   }
 }

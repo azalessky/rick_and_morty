@@ -7,7 +7,7 @@ enum UserMessage {
 }
 
 class Messages {
-  final durarion = Duration(milliseconds: 2000);
+  final duration = Duration(milliseconds: 2000);
   final globalKey = GlobalKey<ScaffoldMessengerState>();
 
   void showMessage(UserMessage message, [List<String>? args]) {
@@ -21,7 +21,7 @@ class Messages {
         content: Text(text),
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.zero,
-        duration: durarion,
+        duration: duration,
       ),
     );
   }

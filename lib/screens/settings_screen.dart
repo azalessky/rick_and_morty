@@ -13,7 +13,7 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(settingsStateProvider);
+    final settings = ref.watch(settingsStateProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +22,7 @@ class SettingsScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          _buildThemeMode(context, ref, config),
+          _buildThemeMode(context, ref, settings),
         ],
       ),
     );

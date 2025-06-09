@@ -16,7 +16,7 @@ class FavoritesScreen extends ConsumerStatefulWidget {
 }
 
 class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
-  final listKey = GlobalKey<AnimatedListState>();
+  final _listKey = GlobalKey<AnimatedListState>();
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
       body: favorites.items.isEmpty
           ? SpacePlaceholder(text: 'FavoritesScreen.Empty'.tr())
           : AnimatedList(
-              key: listKey,
+              key: _listKey,
               initialItemCount: favorites.items.length,
               itemBuilder: (context, index, animation) => _buildListItem(
                 index,
@@ -59,6 +59,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
         ),
         child: CharacterListItem(
           character: character,
+          isFavorite: true,
           onToggleFavorite: (value) => value ? null : _handleRemoveFavorite(index, character),
         ),
       ),
@@ -75,16 +76,16 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
 
     if (oldItems.length > newItems.length) {
       final index = _findChangedIndex(oldItems, newItems);
-      if (index >= 0 && listKey.currentState != null) {
-        listKey.currentState!.removeItem(
+      if (index >= 0 && _listKey.currentState != null) {
+        _listKey.currentState!.removeItem(
           index,
           (context, animation) => _buildListItem(index, oldItems[index], animation),
         );
       }
     } else if (newItems.length > oldItems.length) {
       final index = _findChangedIndex(newItems, oldItems);
-      if (index >= 0 && listKey.currentState != null) {
-        listKey.currentState!.insertItem(index);
+      if (index >= 0 && _listKey.currentState != null) {
+        _listKey.currentState!.insertItem(index);
       }
     }
   }

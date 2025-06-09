@@ -19,9 +19,9 @@ class CharacterListView extends ConsumerStatefulWidget {
 }
 
 class _CharactersListViewState extends ConsumerState<CharacterListView> {
-  bool hasMore = true;
-  bool isLoadingMore = false;
-  bool isRefreshing = false;
+  bool _hasMore = true;
+  bool _isLoadingMore = false;
+  bool _isRefreshing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,13 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
 
     return RefreshIndicator(
       onRefresh: () {
-        isRefreshing = true;
+        _isRefreshing = true;
         return ref.refresh(charactersStateProvider.future);
       },
       child: posts.when(
-        skipLoadingOnRefresh: isRefreshing,
+        skipLoadingOnRefresh: _isRefreshing,
         data: (data) {
-          isRefreshing = false;
+          _isRefreshing = false;
           if (data.items.isNotEmpty) {
             return _buildListView(data, LoadMoreIndicator());
           } else {
@@ -43,7 +43,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
           }
         },
         error: (error, _) {
-          isRefreshing = false;
+          _isRefreshing = false;
           if (posts.hasValue && posts.requireValue.items.isNotEmpty) {
             return _buildListView(posts.requireValue, _buildErrorListItem(error));
           } else {
@@ -63,6 +63,8 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
         itemBuilder: (_, index) {
           if (index < characters.items.length) {
             final character = characters.items[index];
+            final isFavorite = ref.read(favoritesStateProvider.notifier).isFavorite(character);
+
             ref.watch(
               favoritesStateProvider.select(
                 (favorites) => favorites.items.any((c) => c.id == character.id),
@@ -71,6 +73,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
             return CharacterListItem(
               key: ValueKey(character.id),
               character: character,
+              isFavorite: isFavorite,
               onToggleFavorite: (value) => _handleToggleFavorite(character),
             );
           } else {
@@ -112,14 +115,14 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
   }
 
   void _loadMoreItems() async {
-    if (hasMore && !isLoadingMore) {
-      isLoadingMore = true;
+    if (_hasMore && !_isLoadingMore) {
+      _isLoadingMore = true;
 
       await ref.read(charactersStateProvider.notifier).loadNext();
       final posts = ref.read(charactersStateProvider);
 
-      hasMore = posts.value?.hasMore ?? false;
-      isLoadingMore = false;
+      _hasMore = posts.value?.hasMore ?? false;
+      _isLoadingMore = false;
     }
   }
 
