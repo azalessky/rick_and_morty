@@ -5,6 +5,7 @@ import 'package:rick_and_morty/common/constants.dart';
 
 class CharacterImage extends StatelessWidget {
   static const imageRadius = 12.0;
+  static const imagePlaceholder = AssetImage(ResourceSettings.imagePlaceholder);
 
   final String imageUrl;
 
@@ -15,34 +16,31 @@ class CharacterImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
-      fit: BoxFit.cover,
-      imageBuilder: (_, imageProvider) => _buildImageFrame(
-        Image(
-          image: imageProvider,
-          fit: BoxFit.cover,
+    return AspectRatio(
+      aspectRatio: 1.0,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        fit: BoxFit.cover,
+        imageBuilder: (_, imageProvider) => _roundImageCorners(
+          imageProvider,
         ),
-      ),
-      placeholder: (_, _) => _buildImageFrame(
-        AspectRatio(
-          aspectRatio: 1.0,
-          child: Container(),
-        ),
-      ),
-      errorWidget: (_, _, _) => _buildImageFrame(
-        Image.asset(
-          ResourceSettings.imagePlaceholder,
-          fit: BoxFit.cover,
+        placeholder: (_, _) => Container(),
+        errorWidget: (_, _, _) => _roundImageCorners(
+          imagePlaceholder,
         ),
       ),
     );
   }
 
-  Widget _buildImageFrame(Widget child) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(imageRadius),
-      child: child,
+  Widget _roundImageCorners(ImageProvider image) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(imageRadius),
+        image: DecorationImage(
+          image: image,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
