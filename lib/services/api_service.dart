@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -46,7 +47,9 @@ class ApiService {
       }
     } catch (e) {
       throw ApiException(
-        e is SocketException ? ApiError.network : ApiError.general,
+        e is SocketException || e is http.ClientException || e is TimeoutException
+            ? ApiError.network
+            : ApiError.general,
       );
     }
   }
