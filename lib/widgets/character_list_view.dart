@@ -7,6 +7,8 @@ import 'package:rick_and_morty/providers/providers.dart';
 import 'package:rick_and_morty/widgets/widgets.dart';
 
 class CharacterListView extends ConsumerStatefulWidget {
+  static const moreIndicatorHeight = 64.0;
+
   final String Function(Object) errorTextBuilder;
 
   const CharacterListView({
@@ -37,7 +39,12 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
         data: (data) {
           _isRefreshing = false;
           if (data.items.isNotEmpty) {
-            return _buildListView(data, LoadMoreIndicator());
+            return _buildListView(
+              data,
+              LoadMoreIndicator(
+                height: CharacterListView.moreIndicatorHeight,
+              ),
+            );
           } else {
             return const Center(child: CircularProgressIndicator());
           }
@@ -90,7 +97,7 @@ class _CharactersListViewState extends ConsumerState<CharacterListView> {
 
   Widget _buildErrorListItem(Object error) {
     return SizedBox(
-      height: 60,
+      height: CharacterListView.moreIndicatorHeight,
       child: Center(
         child: SpacePlaceholder(
           text: widget.errorTextBuilder(error),
