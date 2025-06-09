@@ -6,8 +6,6 @@
     "HomeScreen.Settings": "Settings",
 
     "CharactersScreen.Title": "Characters",
-    "CharactersScreen.ErrorText": "Server error.\nTry again later.",
-    "CharactersScreen.ErrorItem": "Server error.",
 
     "FavoritesScreen.Title": "Favorites",
     "FavoritesScreen.Empty": "No characters.\nAdd to favorites from the list.",
